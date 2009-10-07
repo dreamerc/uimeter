@@ -12,6 +12,7 @@ uimeter 在做什麼，他是一個分析工具，將滑鼠及鍵盤輸入做量
     # 滑鼠
     # 鍵盤
   # 建立圖形化的分析結果
-    # 複雜度(complexity)和易用性(Usability)進行計分
+    # 複雜度(complexity)
+    # 易用性(usability)
 =階層圖=
 http://uimeter.googlecode.com/files/1.gif
