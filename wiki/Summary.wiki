@@ -6,8 +6,10 @@ uimeter 在做什麼，他是一個分析工具，將滑鼠及鍵盤輸入做量
 因此如何讓系統手動或自動調整符合人的需要，是一個很重要的議題。
 
 初期 :
-  # 模擬 WIMP (window, icon, menu, pointing device) 的框架
-  # 進行滑鼠與鍵盤輸入的擷取
+  # 建構框架
+    # 模擬 WIMP (window, icon, menu, pointing device)
+  # 進行輸入的擷取
+    # 滑鼠
+    # 鍵盤
   # 建立圖形化的分析結果
-
-=詳細=
+    # 複雜度(complexity)和易用性(Usability)進行計分
