@@ -1,0 +1,2 @@
+test.py 為測試主程式, 用途在執行顯示
+timer.py 為外部計時框架, 可輸出 test.csv 檔案
