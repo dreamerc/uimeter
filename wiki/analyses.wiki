@@ -1,0 +1,18 @@
+#labels Featured,Phase-Design
+= Introduction =
+
+如何分析?
+
+
+= Details =
+
+    何謂一個良好的使用者介面，我們根據 <<Handbook of Usability Testing>> 和 <<[HCI] 談人機介面設計與usability>> 所歸納的以下量測重點：
+ * 清晰度：判斷語詞或圖形的意義
+ * 容錯度：允許犯錯且會導正使用狀態
+ * 易學度：容易使用的上手
+ * 達成度：能有效完成使用者所想之功能
+ * 舒適度：能順暢的完成
+
+= 參考書目 =
+ * Handbook of Usability Testing: How to Plan, Design, and Conduct Effective Tests -  Jeff Rubin and Dana Chisnell , ISBN:0471594032
+ * [HCI] 談人機介面設計與usability http://blog.vgod.tw/2009/05/21/usability/
