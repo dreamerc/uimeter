@@ -30,7 +30,10 @@ points = [(200, 200), (200+320, 200), (200+320, 200+200), (200, 200+200)]
 moves = []
 hide = 1
 
-import time
+# Mouse
+cooldown = 0
+
+import time,csv
 
 while 1:
     for event in pygame.event.get():
@@ -40,7 +43,9 @@ while 1:
             moves.append(event.rel)
         else: pass
 
-    print u'%f, %s' % (time.clock(), event)
+#   print u'%f, %s' % (time.clock(), event)
+
+
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > 640:
         speed[0] = -speed[0]
@@ -53,28 +58,40 @@ while 1:
 
     mouse_pos = pygame.mouse.get_pos()
 
-    min_x = min(points[0][0], points[1][0], points[2][0], points[3][0])
-    max_x = max(points[0][0], points[1][0], points[2][0], points[3][0])
-    min_y = min(points[0][1], points[1][1], points[2][1], points[3][1])
-    max_y = max(points[0][1], points[1][1], points[2][1], points[3][1])
+    min_x = points[0][0]
+    max_x = points[1][0]
+    min_y = points[0][1]
+    max_y = points[2][1]
 
     if hide == 1 : screen.blit(fakewindow, (points[0][0],points[0][1]))
     if hide == 0 : screen.blit(minfakewindow, (points[1][0]-44,points[0][1]))
 
     if pygame.mouse.get_pressed()[0]:
         if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
-            if lastpos != pos:
+            if max_x > 640 or max_y > 480 or min_x < 0 or min_y < 0:
                 for i in range(4):
-                    x = points[i][0] + moves[-1][0]
-                    y = points[i][1] + moves[-1][1]
+                    x = points[i][0] - moves[-1][0]
+                    y = points[i][1] - moves[-1][1]
                     points[i] = (x, y)
+            else:
+                if lastpos != pos:
+                    for i in range(4):
+                        x = points[i][0] + moves[-1][0]
+                        y = points[i][1] + moves[-1][1]
+                        points[i] = (x, y)
+
         if min_x+275 <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y-175:
-            if hide == 1: hide = 0
-            elif hide == 0: hide = 1
-            else: pass
-#                   print points
+            if cooldown > 300:
+                if hide == 1: hide = 0
+                elif hide == 0: hide = 1
+                else: pass
+                cooldown = 0
+            else:
+                pass
         lastpos = pos
 
+    cooldown = cooldown + 1
+    if cooldown > 30000: cooldown = 0
 # 旋轉 30 度印出
 
     rotat = pygame.transform.rotozoom(ball2, angle,1)
