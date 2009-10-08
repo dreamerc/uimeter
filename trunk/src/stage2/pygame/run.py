@@ -14,6 +14,9 @@ angle = 0.0
 pygame.display.set_caption('uimeter') 
 screen = pygame.display.set_mode((640,480))
 
+movie = pygame.movie.Movie('demo.mpg')
+
+
 # 圖形需存成 tga 加速影像轉換
 background = pygame.image.load("background.tga")
 ball = pygame.image.load("test.tga")
@@ -34,6 +37,9 @@ hide = 1
 cooldown = 0
 
 import time,csv
+
+movie.play()
+pygame.time.wait(2500)
 
 while 1:
     for event in pygame.event.get():
