@@ -66,7 +66,7 @@ def main():
                 moves.append(event.rel)
         else: pass
 # 顯示現在狀態, 秒數和工作事件
-#        print u'%f, %s' % (time.clock(), event)
+        print u'經過時間 : %f, FPS : %f , 事件 : %s' % (time.clock(), clock.get_fps(), event)
 
 ## 乒乓球
 #    ballrect = ballrect.move(speed)
@@ -137,7 +137,7 @@ def main():
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)
-        print clock.get_fps()
+#       print clock.get_fps()
 #       pygame.display.set_caption("uimeter , fps: " + str(clock.get_fps()))
 
 
