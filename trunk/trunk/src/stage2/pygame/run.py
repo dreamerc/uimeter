@@ -21,15 +21,19 @@ movie = pygame.movie.Movie('demo.mpg')
 background = pygame.image.load("background.tga")
 ball = pygame.image.load("test.tga")
 ball2 = pygame.image.load("test2.tga")
-fakewindow = pygame.image.load("fakewindow.tga")
+# fakewindow = pygame.image.load("fakewindow.tga")
+fakewindow = pygame.image.load("img/word.tga")
 minfakewindow = pygame.image.load("minfakewindow.tga")
 
 pos = (0,0)
 lastpos = (0,0)
-ballrect = ball.get_rect()
+#ballrect = ball.get_rect()
 
 # Fake Window
-points = [(200, 200), (200+320, 200), (200+320, 200+200), (200, 200+200)]
+import Image
+im = Image.open("img/word.tga")
+print im.format, im.size, im.mode
+points = [(1, 1), (im.size[0]+1, 1), (im.size[0]+1, im.size[1]+1), (1, im.size[0]+1)]
 moves = []
 hide = 1
 
@@ -52,15 +56,15 @@ while 1:
 #   print u'%f, %s' % (time.clock(), event)
 
 
-    ballrect = ballrect.move(speed)
-    if ballrect.left < 0 or ballrect.right > 640:
-        speed[0] = -speed[0]
-    if ballrect.top < 0 or ballrect.bottom > 480:
-        speed[1] = -speed[1]
+#   ballrect = ballrect.move(speed)
+#   if ballrect.left < 0 or ballrect.right > 640:
+#      speed[0] = -speed[0]
+#   if ballrect.top < 0 or ballrect.bottom > 480:
+#       speed[1] = -speed[1]
 
-    screen.fill((0, 0, 0))
+#   screen.fill((0, 0, 0))
     screen.blit(background, (0, 0))
-    screen.blit(ball,ballrect)
+#   screen.blit(ball,ballrect)
 
     mouse_pos = pygame.mouse.get_pos()
 
@@ -86,7 +90,7 @@ while 1:
                         y = points[i][1] + moves[-1][1]
                         points[i] = (x, y)
 
-        if min_x+275 <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y-175:
+        if max_x-100 <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= min_y+100:
             if cooldown > 300:
                 if hide == 1: hide = 0
                 elif hide == 0: hide = 1
@@ -100,13 +104,13 @@ while 1:
     if cooldown > 30000: cooldown = 0
 # 旋轉 30 度印出
 
-    rotat = pygame.transform.rotozoom(ball2, angle,1)
-    px = (rotat.get_width() - 50) / 2
-    py = (rotat.get_height() - 50) / 2
-    fix = 31
-    screen.blit(rotat, (320-px-fix,200-py-fix))
-    angle += 5
-    angle %= 360
+#   rotat = pygame.transform.rotozoom(ball2, angle,1)
+#   px = (rotat.get_width() - 50) / 2
+#   py = (rotat.get_height() - 50) / 2
+#   fix = 31
+#   screen.blit(rotat, (320-px-fix,200-py-fix))
+#   angle += 5
+#   angle %= 360
 
 # 滑鼠游標
 #   x, y = pos
