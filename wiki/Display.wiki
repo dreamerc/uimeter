@@ -5,7 +5,7 @@
    # Emacs 圖形界面和純文字版本比較
      # 準備工作
        # 需測試功能?
-   # Word 和 OpenOffice Writer 比較
+   # Word 和 Open Office Writer 比較
  # 尋找 Icon
    # 文字判別跟
    # 數量?大小?要放入的圖片?
