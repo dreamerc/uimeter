@@ -6,12 +6,23 @@
 
 = Details =
 
+Version 0.1
     何謂一個良好的使用者介面，我們根據 <<Handbook of Usability Testing>> 和 <<[HCI] 談人機介面設計與usability>> 所歸納的以下量測重點：
  * 清晰度：判斷語詞或圖形的意義
  * 容錯度：允許犯錯且會導正使用狀態
  * 易學度：容易使用的上手
  * 達成度：能有效完成使用者所想之功能
  * 舒適度：能順暢的完成
+
+Version 0.2
+ * 目的型 - 為達成特定功能
+   # 流暢度 - 能快速找到所要的功能，包括語言的用詞、種類、圖形代表的意義和位置
+   # 容錯度 - 允許犯錯和導正功能 (或許可以用 *預先瀏覽* 的功能取代)
+   # 舒適度 - 減少重複性的工作
+ * 探索型 - 尋找不特定功能
+   # 限制度 - 允許不同組合排序和最大限度的紀錄發生過的流程
+   # 挫折度 - 發生無法繼續之行為數量
+   # 反應速度 - 產生新組合的速度和現在狀態的評估
 
 = 參考書目 =
  * Handbook of Usability Testing: How to Plan, Design, and Conduct Effective Tests -  Jeff Rubin and Dana Chisnell , ISBN:0471594032
