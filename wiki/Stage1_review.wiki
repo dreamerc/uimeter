@@ -19,3 +19,5 @@
 機械測試模型和人類測試模型比較(白資料)
 
 http://spreadsheets.google.com/ccc?key=0AleRP1L2z3yYdF8yNzRCTnVFVkMzWXJoSHZUd0hweWc&hl=zh_tw
+
+總體時間 - 電腦顯示時間 = 人類判斷時間
