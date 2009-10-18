@@ -42,6 +42,7 @@ def main():
 # 顯示現在已經過秒數 (初始化)
     import time
 
+    a = time.time()
 # 播放影片
 
 # 主程式正式開始, 若按 ESC 則跳出結束
@@ -53,7 +54,8 @@ def main():
                 moves.append(event.rel)
         else: pass
 # 顯示現在狀態, 秒數和工作事件
-        print u'經過時間 : %f, FPS : %f , 事件 : %s' % (time.clock(), clock.get_fps(), event)
+        b = time.time()
+        print u'經過時間 : %f 秒, FPS : %f page/sec , 事件 : %s' % (b-a, clock.get_fps(), event)
 
 ## 視窗偵測與移動
         mouse_pos = pygame.mouse.get_pos()
