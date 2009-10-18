@@ -56,7 +56,8 @@ def main():
 # 播放影片
     movie.play()
     pygame.time.wait(2500)
-
+    
+    a = time.time()
 # 主程式正式開始, 若按 ESC 則跳出結束
     while not (pygame.key.get_pressed()[pygame.K_ESCAPE]):
         for event in pygame.event.get():
@@ -66,7 +67,7 @@ def main():
                 moves.append(event.rel)
         else: pass
 # 顯示現在狀態, 秒數和工作事件
-        print u'經過時間 : %f, FPS : %f , 事件 : %s' % (time.clock(), clock.get_fps(), event)
+        print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-a, clock.get_fps(), event)
 
 ## 乒乓球
 #    ballrect = ballrect.move(speed)
