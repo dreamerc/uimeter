@@ -4,6 +4,8 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
+
+
 def main():
     import pygame,sys
     pygame.init()
@@ -13,7 +15,7 @@ def main():
 #   angle = 0.0
 
 # 標題
-    pygame.display.set_caption('catch icon') 
+    pygame.display.set_caption('catch icon')
 
 # FPS 偵測起始化
     clock = pygame.time.Clock()
@@ -29,8 +31,8 @@ def main():
 
 # 載入外部視窗和初始化
     import Image
-    im = Image.open("img/banana.jpg")
-    fakeicon = pygame.image.load("img/banana.jpg")
+    im = Image.open("img/program.tga")
+    fakeicon = pygame.image.load("img/program.tga")
     print im.format, im.size, im.mode
     points = [(50, 50), (im.size[0]+50, 50), (im.size[0]+50, im.size[1]+50), (50, im.size[0]+50)]
     moves = []
@@ -67,11 +69,19 @@ def main():
 
 #       if hide == 1 : screen.blit(fakewindow, (points[0][0],points[0][1]))
 #       if hide == 0 : screen.blit(minfakewindow, (points[1][0]-44,points[0][1]))
-        screen.fill((0, 0, 0))
+        screen.fill((255, 255, 255))
         screen.blit(fakeicon, (points[0][0],points[0][1]))
+        screen.blit(fakeicon, (points[0][0]+150,points[0][1]))
+        screen.blit(fakeicon, (points[0][0]+300,points[0][1]))
 
         if pygame.mouse.get_pressed()[0]:
             if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
+                print "mouse_on_0"
+            if min_x+150 <= mouse_pos[0] <= max_x+150 and min_y <= mouse_pos[1] <= max_y:
+                print "mouse_on_1"
+            if min_x+300 <= mouse_pos[0] <= max_x+300 and min_y <= mouse_pos[1] <= max_y:
+                print "mouse_on_2"
+            '''
                 if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
                 elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
                 elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
@@ -82,7 +92,6 @@ def main():
                             x = points[i][0] + moves[-1][0]
                             y = points[i][1] + moves[-1][1]
                             points[i] = (x, y)
-
             if max_x-100 <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= min_y+100:
                 if cooldown > 50:
                     if hide == 1: hide = 0
@@ -92,8 +101,10 @@ def main():
                 else:
                     pass
             lastpos = pos
-
+            '''
 ## 滑鼠冷卻
+
+
         cooldown = cooldown + 1
         if cooldown > 30000: cooldown = 0
 
