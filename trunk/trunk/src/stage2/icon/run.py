@@ -4,8 +4,6 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-
-
 def main():
     import pygame,sys
     pygame.init()
