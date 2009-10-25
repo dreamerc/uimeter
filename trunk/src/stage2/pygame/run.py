@@ -27,7 +27,7 @@ def main():
 
 # 圖形需存成 tga 加速影像轉換
     background = pygame.image.load("background.tga")
-    fakewindow = pygame.image.load("img/word.tga")
+    fakewindow = pygame.image.load("img/123.tga")
     minfakewindow = pygame.image.load("minfakewindow.tga")
 
 # 滑鼠位置
@@ -36,7 +36,7 @@ def main():
 
 # 載入外部視窗和初始化
     import Image
-    im = Image.open("img/word.tga")
+    im = Image.open("img/123.tga")
     print im.format, im.size, im.mode
     points = [(50, 50), (im.size[0]+50, 50), (im.size[0]+50, im.size[1]+50), (50, im.size[0]+50)]
     moves = []
@@ -76,7 +76,7 @@ def main():
         max_y = points[2][1]
 
         if hide == 1 : screen.blit(fakewindow, (points[0][0],points[0][1]))
-        if hide == 0 : screen.blit(minfakewindow, (points[1][0]-44,points[0][1]))
+        if hide == 0 : screen.blit(minfakewindow, (points[1][0]-98,points[0][1]))
 
         if pygame.mouse.get_pressed()[0]:
             if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
