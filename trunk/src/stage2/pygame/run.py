@@ -26,9 +26,12 @@ def main():
     movie = pygame.movie.Movie('demo.mpg')
 
 # 圖形需存成 tga 加速影像轉換
+
     background = pygame.image.load("background.tga")
     fakewindow = pygame.image.load("img/123.tga")
     minfakewindow = pygame.image.load("minfakewindow.tga")
+    workbar_0 = pygame.image.load("img/640x50a.tga")
+    workbar_1 = pygame.image.load("img/640x50b.tga")
 
 # 滑鼠位置
     pos = (0,0)
@@ -49,8 +52,8 @@ def main():
     import time
 
 # 播放影片
-    movie.play()
-    pygame.time.wait(2500)
+#    movie.play()
+#    pygame.time.wait(2500)
     
     begin_time = time.time()
 # 主程式正式開始, 若按 ESC 則跳出結束
@@ -65,7 +68,6 @@ def main():
         print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
 
         screen.blit(background, (0, 0))
-#    screen.blit(ball,ballrect)
 
 ## 視窗偵測與移動
         mouse_pos = pygame.mouse.get_pos()
@@ -75,37 +77,44 @@ def main():
         min_y = points[0][1]
         max_y = points[2][1]
 
-        if hide == 1 : screen.blit(fakewindow, (points[0][0],points[0][1]))
-        if hide == 0 : screen.blit(minfakewindow, (points[1][0]-98,points[0][1]))
 
-        if pygame.mouse.get_pressed()[0]:
-            if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
-                if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
-                elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
-                elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
-                elif max_y > framesize[1] : points = [(max_x-im.size[0] , framesize[1]-im.size[1]), (max_x , framesize[1]-im.size[1]), (max_x , framesize[1]), (max_x-im.size[0] , framesize[1])]
-                else:
-                    if lastpos != pos:
-                        for i in range(4):
-                            x = points[i][0] + moves[-1][0]
-                            y = points[i][1] + moves[-1][1]
-                            points[i] = (x, y)
-
-            if max_x-100 <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= min_y+100:
-                if mouse_timeout > 50:
-                    if hide == 1: hide = 0
-                    elif hide == 0: hide = 1
-                    else: pass
-                    mouse_timeout = 0
-                else:
-                    pass
-            lastpos = pos
+#        if hide == 0 : screen.blit(minfakewindow, (points[1][0]-98,points[0][1]))
+        if hide == 1: 
+            screen.blit(fakewindow, (points[0][0],points[0][1]))
+            screen.blit(workbar_0, (0,480-50))
+            if pygame.mouse.get_pressed()[0]:
+                if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
+                    if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
+                    elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
+                    elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
+                    elif max_y > framesize[1] : points = [(max_x-im.size[0] , framesize[1]-im.size[1]), (max_x , framesize[1]-im.size[1]), (max_x , framesize[1]), (max_x-im.size[0] , framesize[1])]
+                    else:
+                        if lastpos != pos:
+                            for i in range(4):
+                                x = points[i][0] + moves[-1][0]
+                                y = points[i][1] + moves[-1][1]
+                                points[i] = (x, y)
+                print max_x
+                if max_x-100 <= mouse_pos[0] <= max_x-100+30 and min_y <= mouse_pos[1] <= min_y+20:
+                    if mouse_timeout > 50:
+                        if hide == 1: hide = 0
+                        elif hide == 0: hide = 1
+                        else: pass
+                        mouse_timeout = 0
+                    else:
+                        pass
+                lastpos = pos
+        else:
+            screen.blit(workbar_1, (0,480-50))
+            if pygame.mouse.get_pressed()[0]:
+                if 507 <= mouse_pos[0] <= 640 and 430 <= mouse_pos[1] <= 480:
+                    hide = 1
 
 ## 滑鼠冷卻
         mouse_timeout = mouse_timeout + 1
         if mouse_timeout > 30000: mouse_timeout = 0
 
-
+## 
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)
