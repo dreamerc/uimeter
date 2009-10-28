@@ -32,6 +32,7 @@ def main():
     minfakewindow = pygame.image.load("minfakewindow.tga")
     workbar_0 = pygame.image.load("img/640x50a.tga")
     workbar_1 = pygame.image.load("img/640x50b.tga")
+    workbar_2 = pygame.image.load("img/640x50c.tga") #630x432
 
 # 滑鼠位置
     pos = (0,0)
@@ -43,7 +44,8 @@ def main():
     print im.format, im.size, im.mode
     points = [(50, 50), (im.size[0]+50, 50), (im.size[0]+50, im.size[1]+50), (50, im.size[0]+50)]
     moves = []
-    hide = 1
+    hide = 0
+    max_workbar = 0
 
 # Mouse 工作冷卻
     mouse_timeout = 0
@@ -78,38 +80,48 @@ def main():
         max_y = points[2][1]
 
 
-#        if hide == 0 : screen.blit(minfakewindow, (points[1][0]-98,points[0][1]))
-        if hide == 1: 
-            screen.blit(fakewindow, (points[0][0],points[0][1]))
-            screen.blit(workbar_0, (0,480-50))
-            if pygame.mouse.get_pressed()[0]:
-                if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
-                    if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
-                    elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
-                    elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
-                    elif max_y > framesize[1] : points = [(max_x-im.size[0] , framesize[1]-im.size[1]), (max_x , framesize[1]-im.size[1]), (max_x , framesize[1]), (max_x-im.size[0] , framesize[1])]
-                    else:
-                        if lastpos != pos:
-                            for i in range(4):
-                                x = points[i][0] + moves[-1][0]
-                                y = points[i][1] + moves[-1][1]
-                                points[i] = (x, y)
-                print max_x
-                if max_x-100 <= mouse_pos[0] <= max_x-100+30 and min_y <= mouse_pos[1] <= min_y+20:
-                    if mouse_timeout > 50:
-                        if hide == 1: hide = 0
-                        elif hide == 0: hide = 1
-                        else: pass
-                        mouse_timeout = 0
+        if max_workbar == 1:
+                screen.blit(workbar_0, (0,480-50))
+                screen.blit(workbar_2,(0,0))
+                if pygame.mouse.get_pressed()[0]:
+                    if 630-100+30 <= mouse_pos[0] <= 630-100+30+25 and 0 <= mouse_pos[1] <= 0+20:
+                        max_workbar = 0
+        else:
+            if hide == 0: 
+                screen.blit(fakewindow, (points[0][0],points[0][1]))
+                screen.blit(workbar_0, (0,480-50))
+                if pygame.mouse.get_pressed()[0]:
+                    if max_x-100 <= mouse_pos[0] <= max_x-100+30 and min_y <= mouse_pos[1] <= min_y+20:
+                        if mouse_timeout > 50:
+                            if hide == 0: hide = 1
+                            elif hide == 1: hide = 0
+                            else: pass
+                            mouse_timeout = 0
+                        else:
+                            pass
+                    elif max_x-100+30 <= mouse_pos[0] <= max_x-100+30+25 and min_y <= mouse_pos[1] <= min_y+20:
+                        max_workbar = 1
+                        print max_workbar
+                    elif min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
+                        if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
+                        elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
+                        elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
+                        elif max_y > framesize[1] : points = [(max_x-im.size[0] , framesize[1]-im.size[1]), (max_x , framesize[1]-im.size[1]), (max_x , framesize[1]), (max_x-im.size[0] , framesize[1])]
+                        else:
+                            if lastpos != pos:
+                                for i in range(4):
+                                    x = points[i][0] + moves[-1][0]
+                                    y = points[i][1] + moves[-1][1]
+                                    points[i] = (x, y)
                     else:
                         pass
-                lastpos = pos
-        else:
-            screen.blit(workbar_1, (0,480-50))
-            if pygame.mouse.get_pressed()[0]:
-                if 507 <= mouse_pos[0] <= 640 and 430 <= mouse_pos[1] <= 480:
-                    hide = 1
-
+                    lastpos = pos
+            else:
+                screen.blit(workbar_1, (0,480-50))
+                if pygame.mouse.get_pressed()[0]:
+                    if 578 <= mouse_pos[0] <= 640 and 430 <= mouse_pos[1] <= 480:
+                        hide = 0
+    
 ## 滑鼠冷卻
         mouse_timeout = mouse_timeout + 1
         if mouse_timeout > 30000: mouse_timeout = 0
