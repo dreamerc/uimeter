@@ -31,8 +31,13 @@ def main():
     points = [(50, 50), (im.size[0]+50, 50), (im.size[0]+50, im.size[1]+50), (50, im.size[0]+50)]
     moves = []
     hide = 0
-    fakeicon1 = pygame.image.load("img/program1.tga")
 
+    fakeicon_big = pygame.transform.scale(fakeicon, (100, 100))
+
+    fakeicon1 = pygame.image.load("img/program1.tga")
+    fakeicon1_big = pygame.transform.scale(fakeicon1, (100, 100))
+
+    title = pygame.image.load("img/title.tga")
 # Mouse 工作冷卻
     cooldown = 0
 
@@ -65,25 +70,30 @@ def main():
 #       if hide == 1 : screen.blit(fakewindow, (points[0][0],points[0][1]))
 #       if hide == 0 : screen.blit(minfakewindow, (points[1][0]-44,points[0][1]))
         screen.fill((255, 255, 255))
+        screen.blit(title, (0,0))
         screen.blit(fakeicon, (points[0][0],points[0][1]))
-        screen.blit(fakeicon, (points[0][0]+150,points[0][1]))
-        screen.blit(fakeicon, (points[0][0]+300,points[0][1]))
+        screen.blit(fakeicon, (points[0][0]+70,points[0][1]))
+        screen.blit(fakeicon, (points[0][0]+140,points[0][1]))
+        screen.blit(fakeicon_big, (points[0][0]+210,points[0][1]))
 
         if pygame.mouse.get_pressed()[0]:
             if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
                 screen.blit(fakeicon1, (points[0][0],points[0][1]))
                 print "mouse_on_0"
-            if min_x+150 <= mouse_pos[0] <= max_x+150 and min_y <= mouse_pos[1] <= max_y:
-                screen.blit(fakeicon1, (points[0][0]+150,points[0][1]))
+            if min_x+70 <= mouse_pos[0] <= max_x+70 and min_y <= mouse_pos[1] <= max_y:
+                screen.blit(fakeicon1, (points[0][0]+70,points[0][1]))
                 print "mouse_on_1"
-            if min_x+300 <= mouse_pos[0] <= max_x+300 and min_y <= mouse_pos[1] <= max_y:
-                screen.blit(fakeicon1, (points[0][0]+300,points[0][1]))
+            if min_x+140 <= mouse_pos[0] <= max_x+140 and min_y <= mouse_pos[1] <= max_y:
+                screen.blit(fakeicon1, (points[0][0]+140,points[0][1]))
                 print "mouse_on_2"
+            if min_x+210 <= mouse_pos[0] <= max_x+310 and min_y <= mouse_pos[1] <= max_y+50:
+                screen.blit(fakeicon1_big, (points[0][0]+210,points[0][1]))
+                print "mouse_on_3"
 ## 滑鼠冷卻
 
 
         cooldown = cooldown + 1
-        if cooldown > 30000: cooldown = 0
+        if cooldown > 140000: cooldown = 0
 
 
 # 將資料寫至螢幕
