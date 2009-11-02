@@ -81,28 +81,36 @@ def main():
 
 
         if max_workbar == 1:
-                screen.blit(workbar_0, (0,480-50))
-                screen.blit(workbar_2,(0,0))
-                if pygame.mouse.get_pressed()[0]:
+            screen.blit(workbar_0, (0,480-50))
+            screen.blit(workbar_2,(0,0))
+            if pygame.mouse.get_pressed()[0]:
+                if mouse_timeout > 50:
                     if 630-100+30 <= mouse_pos[0] <= 630-100+30+25 and 0 <= mouse_pos[1] <= 0+20:
                         max_workbar = 0
+                    elif 630-100 <= mouse_pos[0] <= 630-100+30 and 0 <= mouse_pos[1] <= 0+20:
+                        max_workbar = 0
+                        hide = 1
+                    mouse_timeout = 0
+                else:
+                    pass
         else:
             if hide == 0: 
                 screen.blit(fakewindow, (points[0][0],points[0][1]))
                 screen.blit(workbar_0, (0,480-50))
                 if pygame.mouse.get_pressed()[0]:
-                    if max_x-100 <= mouse_pos[0] <= max_x-100+30 and min_y <= mouse_pos[1] <= min_y+20:
-                        if mouse_timeout > 50:
+                    if mouse_timeout > 50:
+                        if max_x-100 <= mouse_pos[0] <= max_x-100+30 and min_y <= mouse_pos[1] <= min_y+20:
                             if hide == 0: hide = 1
                             elif hide == 1: hide = 0
-                            else: pass
-                            mouse_timeout = 0
-                        else:
-                            pass
-                    elif max_x-100+30 <= mouse_pos[0] <= max_x-100+30+25 and min_y <= mouse_pos[1] <= min_y+20:
-                        max_workbar = 1
-                        print max_workbar
-                    elif min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
+                            else: pass                            
+                        elif max_x-100+30 <= mouse_pos[0] <= max_x-100+30+25 and min_y <= mouse_pos[1] <= min_y+20:
+                            max_workbar = 1
+                            print max_workbar
+                        else: pass
+                        mouse_timeout = 0
+                    else:
+                        pass
+                    if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
                         if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
                         elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
                         elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
