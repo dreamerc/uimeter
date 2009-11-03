@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main():
+def main(debug=1):
     import pygame,sys
     pygame.init()
 
@@ -53,6 +53,9 @@ def main():
 # 顯示現在已經過秒數 (初始化)
     import time
 
+# CSV 資料庫格式
+    import csv
+    csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
 # 播放影片
 #    movie.play()
 #    pygame.time.wait(2500)
@@ -67,7 +70,8 @@ def main():
                 moves.append(event.rel)
         else: pass
 # 顯示現在狀態, 秒數和工作事件
-        print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
+        if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
+        csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
 
         screen.blit(background, (0, 0))
 
