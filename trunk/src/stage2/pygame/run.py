@@ -84,11 +84,10 @@ def main(debug=1,csv_bool=0,windows=0):
                     if pygame.key.get_pressed()[i] == 1 :
                         print chr(i) + ' '                
                         font_text = font_text + chr(i)
-                if event.unicode != u'\x1b' :
-                    print event.unicode
-                    font_text = font_text + event.unicode
-                else:
-                    pass
+                if windows == 0 :
+                    if event.unicode != u'\x1b' :
+                        print event.unicode
+                        font_text = font_text + event.unicode
             else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
