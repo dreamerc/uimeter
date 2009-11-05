@@ -165,8 +165,8 @@ def main(debug=1,csv_bool=0,windows=0):
 
 # 繪製字型
         if font_text != font_text_old: 
-            ren = font.render(font_text,1,(127,127,127))
-            if len(font_text) > 30:
+            ren = font.render(font_text,1,(200,200,200))
+            if len(font_text) > 25:
                 font_text = u"字太多...變少了"
         else:
             pass
@@ -175,9 +175,6 @@ def main(debug=1,csv_bool=0,windows=0):
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)
-#       print clock.get_fps()
-#       pygame.display.set_caption("uimeter , fps: " + str(clock.get_fps()))
-
 
 if __name__ == "__main__":
 
@@ -192,7 +189,9 @@ if __name__ == "__main__":
        print "Python Imaging Libary 尚未安裝"
 
     import sys
-    if sys.platform == "win32" or sys.platform == "cygwin" : windows = 1
+    if sys.platform == "win32" or sys.platform == "cygwin" :
+        windows = 1
+        print "將不支援輸入法"
     else : windows = 0
 
-    main(windows=1)
+    main(windows=windows,csv_bool=0)
