@@ -1,3 +1,8 @@
 現在已經使用的函式庫：
 dialog
 python, pygame, python image libary, python Gnuplot
+
+Refs (win32):
+Python 2.6.4 http://www.python.org/ftp/python/2.6.4/python-2.6.4.msi
+Pygame 1.9.1 http://pygame.org/ftp/pygame-1.9.1.win32-py2.6.msi
+Python Imaging Library 1.1.6 http://effbot.org/downloads/PIL-1.1.6.win32-py2.6.exe
