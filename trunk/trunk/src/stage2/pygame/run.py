@@ -4,9 +4,15 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main(debug=1):
+def main(debug=1,csv_bool=0,windows=0):
     import pygame,sys
     pygame.init()
+
+# 啟動字型
+    print "啟動字型測試 ..." + str(pygame.font.get_init())
+    if windows == 0 : font = pygame.font.Font("/usr/share/fonts/truetype/arphic/uming.ttc",18)
+    ren = font.render(u"中文測試",1,(255,0,0))
+    
 
 #   speed = [2,2]
 #   gray = (127,127,127)
@@ -54,8 +60,11 @@ def main(debug=1):
     import time
 
 # CSV 資料庫格式
-    import csv
-    csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    if csv_bool == 1:
+        import csv
+        csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    else:
+        pass
 # 播放影片
 #    movie.play()
 #    pygame.time.wait(2500)
@@ -71,7 +80,7 @@ def main(debug=1):
         else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
-        csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
+        if csv_bool == 1: csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
 
         screen.blit(background, (0, 0))
 
@@ -138,7 +147,8 @@ def main(debug=1):
         mouse_timeout = mouse_timeout + 1
         if mouse_timeout > 30000: mouse_timeout = 0
 
-## 
+# 繪製字型
+        screen.blit(ren, (0,0))
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)

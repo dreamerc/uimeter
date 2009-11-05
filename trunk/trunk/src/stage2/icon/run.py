@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main():
+def main(debug=1):
     import pygame,sys
     pygame.init()
 
@@ -45,6 +45,13 @@ def main():
     import time
 
     a = time.time()
+
+# CSV 資料庫格式
+    if csv_bool == 1:
+        import csv
+        csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    else:
+        pass
 # 播放影片
 
 # 主程式正式開始, 若按 ESC 則跳出結束
@@ -57,7 +64,8 @@ def main():
         else: pass
 # 顯示現在狀態, 秒數和工作事件
         b = time.time()
-        print u'經過時間 : %f 秒, FPS : %f page/sec , 事件 : %s' % (b-a, clock.get_fps(), event)
+        if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec , 事件 : %s' % (b-a, clock.get_fps(), event)
+        if csv_bool == 1 :csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
 
 ## 視窗偵測與移動
         mouse_pos = pygame.mouse.get_pos()
