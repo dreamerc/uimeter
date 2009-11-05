@@ -15,7 +15,6 @@ def main(debug=1,csv_bool=0,windows=0):
     font_text = u"中文測試"
     font_text_old = u""
     ren = font.render(font_text,1,(127,127,127))
-    
 
 #   speed = [2,2]
 #   gray = (127,127,127)
@@ -187,4 +186,4 @@ if __name__ == "__main__":
     if sys.platform == "win32" or sys.platform == "cygwin" : windows = 1
     else : windows = 0
 
-    main(windows)
+    main(windows=windows)
