@@ -10,8 +10,8 @@ def main(debug=1,csv_bool=0,windows=0):
 
 # 啟動字型
     print "啟動字型測試 ..." + str(pygame.font.get_init())
-    if windows == 0 : font = pygame.font.Font("/usr/share/fonts/truetype/arphic/uming.ttc",18)
-    else : font = pygame.font.SysFont("新細明體",18)
+    if windows == 0 : font = pygame.font.Font("/usr/share/fonts/truetype/arphic/uming.ttc",24)
+    else : font = pygame.font.SysFont("新細明體",24)
     font_text = u"中文測試"
     font_text_old = u""
     ren = font.render(font_text,1,(127,127,127))
@@ -80,14 +80,19 @@ def main(debug=1,csv_bool=0,windows=0):
                 pos = event.pos
                 moves.append(event.rel)
             elif event.type == pygame.KEYDOWN:
-                for i in range(pygame.K_a, pygame.K_z + 1) :
-                    if pygame.key.get_pressed()[i] == 1 :
-                        print chr(i) + ' '                
-                        font_text = font_text + chr(i)
                 if windows == 0 :
-                    if event.unicode != u'\x1b' :
+                    if event.unicode == u'\x08':
+                        font_text = font_text[0:-1]
+                    elif event.unicode != u'\x1b' :
                         print event.unicode
                         font_text = font_text + event.unicode
+                else:
+                    if pygame.key.get_pressed()[pygame.K_BACKSPACE]:
+                        font_text = font_text[0:-1]
+                    for i in range(pygame.K_a, pygame.K_z + 1) :
+                        if pygame.key.get_pressed()[i] == 1 :
+                            print chr(i) + ' '                
+                            font_text = font_text + chr(i)
             else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
@@ -190,4 +195,4 @@ if __name__ == "__main__":
     if sys.platform == "win32" or sys.platform == "cygwin" : windows = 1
     else : windows = 0
 
-    main(windows=windows)
+    main(windows=1)
