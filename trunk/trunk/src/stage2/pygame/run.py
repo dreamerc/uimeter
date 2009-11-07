@@ -104,7 +104,7 @@ def main(debug=1,csv_bool=0,windows=0):
         mouse_pos = pygame.mouse.get_pos()
 
         min_x = points[0][0]
-        max_x = points[1][0]
+        max_x = points[2][0]
         min_y = points[0][1]
         max_y = points[2][1]
 
@@ -140,16 +140,20 @@ def main(debug=1,csv_bool=0,windows=0):
                     else:
                         pass
                     if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
+                        if lastpos != pos:
+                            for i in range(4):
+                                x = points[i][0] + moves[-1][0]
+                                y = points[i][1] + moves[-1][1]
+                                points[i] = (x, y)
+                            min_x = points[0][0]
+                            max_x = points[2][0]
+                            min_y = points[0][1]
+                            max_y = points[2][1]
                         if min_x < 0 : points = [(0, min_y), (im.size[0], min_y), (im.size[0], im.size[1]+ min_y), (0, im.size[0]+min_y)]
                         elif min_y < 0 : points = [(min_x, 0), (im.size[0]+min_x, 0), (im.size[0]+min_x, im.size[1]), (min_x, im.size[0]+min_y)]
                         elif max_x > framesize[0] : points = [(framesize[0]-im.size[0] , max_y-im.size[1]), (framesize[0] , max_y-im.size[1]), (framesize[0] , max_y), (framesize[0]-im.size[0] , max_y)]
                         elif max_y > framesize[1] : points = [(max_x-im.size[0] , framesize[1]-im.size[1]), (max_x , framesize[1]-im.size[1]), (max_x , framesize[1]), (max_x-im.size[0] , framesize[1])]
-                        else:
-                            if lastpos != pos:
-                                for i in range(4):
-                                    x = points[i][0] + moves[-1][0]
-                                    y = points[i][1] + moves[-1][1]
-                                    points[i] = (x, y)
+
                     else:
                         pass
                     lastpos = pos
