@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main(debug=1):
+def main(debug=1,csv_bool=0):
     import pygame,sys
     pygame.init()
 
