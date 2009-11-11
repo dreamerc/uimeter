@@ -1,0 +1,25 @@
+#In Areas
+
+= 簡介 =
+判定區域的演算法
+
+
+= 細節 =
+
+==版本A==
+正方
+
+http://uimeter.googlecode.com/files/sq_vector.png
+ # 透過絕對座標畫出圖形
+ # 取得圖形大小
+ # 判斷滑鼠的位置是否位 絕對座標起始點 <= 偵測區域 <= 絕對座標起始點 + 圖形大小
+
+
+正圓
+
+http://uimeter.googlecode.com/files/cr_vector.png
+ # 透過絕對座標畫出圖形
+ # 取得圖形大小
+ # x,y 各加 1/2 的圖形大小取得圓心座標
+ # 滑鼠座標 - 圓心座標 取距離
+ # 小於半徑則偵測到
