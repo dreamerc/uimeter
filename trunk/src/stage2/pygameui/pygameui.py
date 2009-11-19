@@ -7,6 +7,7 @@
 class surface_text():
     """
     Pygame - text surface
+    文字物件部份
     """
     def __init__(self, windows):
         if windows == 0 :
@@ -54,7 +55,6 @@ def main(debug=1, csv_bool=0, windows=0):
 
 # 顯示用平面
 # suface_images.append(pygame.image.load("background.tga"), filepath, size)
-    surface_images = []
 
 # 滑鼠位置
     mouse_pos = [(0,0)]
