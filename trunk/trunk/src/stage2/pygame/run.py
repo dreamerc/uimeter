@@ -64,7 +64,7 @@ def main(debug=1,csv_bool=0,windows=0):
 # CSV 資料庫格式
     if csv_bool == 1:
         import csv
-        csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csv_file = csv.writer(open("csv_file.csv", "wb"), quoting=csv.QUOTE_MINIMAL)
     else:
         pass
 # 播放影片
@@ -96,7 +96,7 @@ def main(debug=1,csv_bool=0,windows=0):
             else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
-        if csv_bool == 1: csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
+        if csv_bool == 1: csv_file.writerow((str(time.time()-begin_time), str(clock.get_fps()), str(pygame.mouse.get_pos()[0]), str(pygame.mouse.get_pos()[1]), str(event) ))
 
         screen.blit(background, (0, 0))
 
