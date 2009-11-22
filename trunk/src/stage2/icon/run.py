@@ -25,8 +25,8 @@ def main(debug=1,csv_bool=0):
 
 # 載入外部視窗和初始化
     import Image
-    im = Image.open("img/program.tga")
-    fakeicon = pygame.image.load("img/program.tga")
+    im = Image.open("img/file.tga")
+    fakeicon = pygame.image.load("img/file.tga")
     print im.format, im.size, im.mode
     points = [(50, 50), (im.size[0]+50, 50), (im.size[0]+50, im.size[1]+50), (50, im.size[0]+50)]
     moves = []
