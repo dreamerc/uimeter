@@ -67,6 +67,12 @@ def main(debug=1,csv_bool=0,windows=0):
         csv_file = csv.writer(open("csv_file.csv", "wb"), quoting=csv.QUOTE_MINIMAL)
     else:
         pass
+# 矩陣輸出
+    matrix = []
+    for i in range(641):
+        matrix.append([])
+        for j in range(481):
+            matrix[i].append(0)
 # 播放影片
 #    movie.play()
 #    pygame.time.wait(2500)
@@ -98,6 +104,7 @@ def main(debug=1,csv_bool=0,windows=0):
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
         if csv_bool == 1: csv_file.writerow((str(time.time()-begin_time), str(clock.get_fps()), str(pygame.mouse.get_pos()[0]), str(pygame.mouse.get_pos()[1]), str(event) ))
 
+        matrix[pygame.mouse.get_pos()[0]][pygame.mouse.get_pos()[1]] = matrix[pygame.mouse.get_pos()[0]][pygame.mouse.get_pos()[1]] + 1
         screen.blit(background, (0, 0))
 
 ## 視窗偵測與移動
@@ -178,6 +185,12 @@ def main(debug=1,csv_bool=0,windows=0):
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)
+    file = open('heatmap.dat','wb')
+    for i in matrix:
+        for j in i:
+            file.write(str(j) + ' ')
+        file.write('\n')
+    file.close()
 
 if __name__ == "__main__":
 
@@ -197,4 +210,4 @@ if __name__ == "__main__":
         print "將不支援輸入法"
     else : windows = 0
 
-    main(windows=windows,csv_bool=0)
+    main(windows=windows,csv_bool=1)
