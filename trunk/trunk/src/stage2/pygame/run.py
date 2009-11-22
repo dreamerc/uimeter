@@ -85,6 +85,8 @@ def main(debug=1,csv_bool=0,windows=0):
             elif event.type == pygame.MOUSEMOTION:
                 pos = event.pos
                 moves.append(event.rel)
+# 儲存滑鼠位置至矩陣
+                matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
             elif event.type == pygame.KEYDOWN:
                 if windows == 0 :
                     if event.unicode == u'\x08':
@@ -104,8 +106,7 @@ def main(debug=1,csv_bool=0,windows=0):
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
         if csv_bool == 1: csv_file.writerow((str(time.time()-begin_time), str(clock.get_fps()), str(pygame.mouse.get_pos()[0]), str(pygame.mouse.get_pos()[1]), str(event) ))
 
-# 存入矩陣
-        matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
+# 存入按下按鈕
         if pygame.mouse.get_pressed()[0]:
             matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1000
         screen.blit(background, (0, 0))
@@ -190,14 +191,7 @@ def main(debug=1,csv_bool=0,windows=0):
         clock.tick(100)
 
 # 繪製資料矩陣給 gnuplot 用
-    matrix[480][640] = 20000
     file = open('heatmap.dat','wb')
-    '''
-    for y in range(481):
-        for x in range(641):
-            file.write(str(matrix[480-y][x]) + ' ')
-        file.write('\n')
-    '''
     for i in matrix:
         for j in i:
             file.write(str(j) + ' ')
