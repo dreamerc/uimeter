@@ -69,9 +69,9 @@ def main(debug=1,csv_bool=0,windows=0):
         pass
 # 矩陣輸出
     matrix = []
-    for i in range(641):
+    for i in range(481):
         matrix.append([])
-        for j in range(481):
+        for j in range(641):
             matrix[i].append(0)
 # 播放影片
 #    movie.play()
@@ -104,7 +104,10 @@ def main(debug=1,csv_bool=0,windows=0):
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
         if csv_bool == 1: csv_file.writerow((str(time.time()-begin_time), str(clock.get_fps()), str(pygame.mouse.get_pos()[0]), str(pygame.mouse.get_pos()[1]), str(event) ))
 
-        matrix[pygame.mouse.get_pos()[0]][pygame.mouse.get_pos()[1]] = matrix[pygame.mouse.get_pos()[0]][pygame.mouse.get_pos()[1]] + 1
+# 存入矩陣
+        matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
+        if pygame.mouse.get_pressed()[0]:
+            matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1000
         screen.blit(background, (0, 0))
 
 ## 視窗偵測與移動
@@ -185,12 +188,30 @@ def main(debug=1,csv_bool=0,windows=0):
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)
+
+# 繪製資料矩陣給 gnuplot 用
+    matrix[480][640] = 20000
     file = open('heatmap.dat','wb')
+    '''
+    for y in range(481):
+        for x in range(641):
+            file.write(str(matrix[480-y][x]) + ' ')
+        file.write('\n')
+    '''
     for i in matrix:
         for j in i:
             file.write(str(j) + ' ')
         file.write('\n')
     file.close()
+
+# Gnuplot 繪圖
+    g = Gnuplot.Gnuplot(debug=1)
+    g('unset cbtics')
+    g('unset key')
+    g('set view map')
+    g('set yrange [] reverse')
+    g("splot 'heatmap.dat' matrix with image")
+    raw_input('Please press return to exit...\n')
 
 if __name__ == "__main__":
 
@@ -204,10 +225,21 @@ if __name__ == "__main__":
     except:
        print "Python Imaging Libary 尚未安裝"
 
+    try:
+        print '嘗試載入 Gnuplot ...',
+        import Gnuplot
+        print '成功'
+    except:
+        print '載入 Gnuplot 失敗... 檢查原因'
+        try:
+            import numpy
+        except:
+            print '請先安裝 NumPy, 再安裝 Gnuplot'
+
     import sys
     if sys.platform == "win32" or sys.platform == "cygwin" :
         windows = 1
         print "將不支援輸入法"
     else : windows = 0
 
-    main(windows=windows,csv_bool=1)
+    main(windows=windows,csv_bool=0)
