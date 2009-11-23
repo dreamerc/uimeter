@@ -68,11 +68,16 @@ def main(debug=1,csv_bool=0,windows=0):
     else:
         pass
 # 矩陣輸出
-    matrix = []
+    matrix_move = []
     for i in range(481):
-        matrix.append([])
+        matrix_move.append([])
         for j in range(641):
-            matrix[i].append(0)
+            matrix_move[i].append(0)
+    matrix_press = []
+    for i in range(481):
+        matrix_press.append([])
+        for j in range(641):
+            matrix_press[i].append(0)
 # 播放影片
 #    movie.play()
 #    pygame.time.wait(2500)
@@ -86,7 +91,7 @@ def main(debug=1,csv_bool=0,windows=0):
                 pos = event.pos
                 moves.append(event.rel)
 # 儲存滑鼠位置至矩陣
-                matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
+                matrix_move[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix_move[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
             elif event.type == pygame.KEYDOWN:
                 if windows == 0 :
                     if event.unicode == u'\x08':
@@ -108,7 +113,7 @@ def main(debug=1,csv_bool=0,windows=0):
 
 # 存入按下按鈕
         if pygame.mouse.get_pressed()[0]:
-            matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1000
+            matrix_press[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] = matrix_move[pygame.mouse.get_pos()[1]][pygame.mouse.get_pos()[0]] + 1
         screen.blit(background, (0, 0))
 
 ## 視窗偵測與移動
@@ -190,9 +195,28 @@ def main(debug=1,csv_bool=0,windows=0):
         pygame.display.flip()
         clock.tick(100)
 
+# Mouse_move
 # 繪製資料矩陣給 gnuplot 用
     file = open('heatmap.dat','wb')
-    for i in matrix:
+    for i in matrix_move:
+        for j in i:
+            file.write(str(j) + ' ')
+        file.write('\n')
+    file.close()
+
+# Gnuplot 繪圖
+    g = Gnuplot.Gnuplot(debug=1)
+    g('unset cbtics')
+    g('unset key')
+    g('set view map')
+    g('set yrange [] reverse')
+    g("splot 'heatmap.dat' matrix with image")
+    raw_input('Please press return to exit...\n')
+
+# Mouse_press
+# 繪製資料矩陣給 gnuplot 用
+    file = open('heatmap.dat','wb')
+    for i in matrix_press:
         for j in i:
             file.write(str(j) + ' ')
         file.write('\n')
