@@ -67,7 +67,7 @@ def main(debug=1,csv_bool=0):
     counter = 0
     mark = 0
 # 圓
-    mark_circle = 1
+    mark_circle = 0
     circle = []
     circle_rad = []
     circle_hit = []
@@ -94,6 +94,10 @@ def main(debug=1,csv_bool=0):
         screen.fill((255, 255, 255))
         if mark == 0:
             counter += 1
+            if counter == 11:
+                counter = 1
+                if mark_circle == 1: mark_circle = 0
+                else: mark_circle = 1
             if mark_circle == 0:
                 rect = []
                 rect_hit = []
@@ -105,7 +109,7 @@ def main(debug=1,csv_bool=0):
                 circle_rad = []
                 circle_hit = []
                 for i in range(counter):
-                    circle.append((random.randint(0,600), random.randint(0,380)))
+                    circle.append((random.randint(50,600), random.randint(50,380)))
                     circle_rad.append(random.randint(5,50))
                     circle_hit.append(0)
             mark = 1
