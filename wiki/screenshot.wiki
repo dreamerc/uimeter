@@ -1,0 +1,4 @@
+#labels Featured
+= Details =
+*GnuPlot Heatmap export
+http://uimeter.googlecode.com/files/gnuplot-heatmap-test.jpg
