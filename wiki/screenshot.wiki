@@ -1,4 +1,8 @@
 #labels Featured
 = Details =
-*GnuPlot Heatmap export
+  * GnuPlot Heatmap export
 http://uimeter.googlecode.com/files/gnuplot-heatmap-test.jpg
+  * Mouse move
+http://uimeter.googlecode.com/files/gnuplot-screenshot-move.png
+  * Mouse press
+http://uimeter.googlecode.com/files/gnuplot-screenshot-pressed.png
