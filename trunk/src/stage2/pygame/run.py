@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main(debug=1,csv_bool=0,windows=0):
+def main(debug=0,csv_bool=0,windows=0):
     import pygame,sys
     pygame.init()
 
@@ -79,8 +79,8 @@ def main(debug=1,csv_bool=0,windows=0):
         for j in range(641):
             matrix_press[i].append(0)
 # 播放影片
-#    movie.play()
-#    pygame.time.wait(2500)
+    movie.play()
+    pygame.time.wait(2500)
     
     begin_time = time.time()
 # 主程式正式開始, 若按 ESC 則跳出結束
