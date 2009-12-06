@@ -63,12 +63,14 @@ def main(debug=1,csv_bool=0):
 # x 座標 , y 座標 , x 大小 , y 大小
     import random
     rect = []
+    rect_color = []
     rect_hit = []
     counter = 0
     mark = 0
 # 圓
     mark_circle = 0
     circle = []
+    circle_color = []
     circle_rad = []
     circle_hit = []
 
@@ -104,6 +106,8 @@ def main(debug=1,csv_bool=0):
                 for i in range(counter):
                     rect.append((random.randint(0,600), random.randint(0,380), random.randint(5,100), random.randint(5,100) ))
                     rect_hit.append(0)
+                    a = random.randint(0,255)
+                    rect_color.append((a,a,a))
             else:
                 circle = []
                 circle_rad = []
@@ -112,11 +116,13 @@ def main(debug=1,csv_bool=0):
                     circle.append((random.randint(50,600), random.randint(50,380)))
                     circle_rad.append(random.randint(5,50))
                     circle_hit.append(0)
+                    a = random.randint(0,255)
+                    circle_color.append((a,a,a))
             mark = 1
             
         if mark_circle == 0:
-            for i in rect:
-                pygame.draw.rect(screen, (0,0,0) , i)
+            for i in range(counter):
+                pygame.draw.rect(screen, rect_color[i] , rect[i])
             if pygame.mouse.get_pressed()[0]:
                 j = 0
                 for i in rect:
@@ -130,7 +136,7 @@ def main(debug=1,csv_bool=0):
                 if k == counter : mark = 0
         else:
             for i in range(counter):
-                pygame.draw.circle(screen, (0,0,0), circle[i], circle_rad[i])
+                pygame.draw.circle(screen, circle_color[i], circle[i], circle_rad[i])
             if pygame.mouse.get_pressed()[0]:
                 for i in range(counter):
                     if (mouse_pos[0]-circle[i][0])**2 +(mouse_pos[1]-circle[i][1])**2 <= circle_rad[i]**2:
