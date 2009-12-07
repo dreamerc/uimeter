@@ -55,6 +55,9 @@ def main(debug=0,csv_bool=0,windows=0):
     hide = 0
     max_workbar = 0
 
+# 螢幕擷取
+    image_counter = 0
+
 # Mouse 工作冷卻
     mouse_timeout = 0
 
@@ -106,6 +109,8 @@ def main(debug=0,csv_bool=0,windows=0):
                         if pygame.key.get_pressed()[i] == 1 :
                             print chr(i) + ' '                
                             font_text = font_text + chr(i)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                pygame.image.save(screen, 'screenshot/' +str(image_counter)+'.png')
             else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
@@ -210,6 +215,7 @@ def main(debug=0,csv_bool=0,windows=0):
     g('unset key')
     g('set view map')
     g('set yrange [] reverse')
+#   g("plot 'screenshot/0.png' binary filetype=png origin=(0,0)  dx=0.5 dy=1.5 with rgbimage notitle")
     g("splot 'heatmap.dat' matrix with image")
     raw_input('Please press return to exit...\n')
 
