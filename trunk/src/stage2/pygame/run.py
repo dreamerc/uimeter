@@ -84,8 +84,8 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
 
 # 顯示線段
     show_lines = 0
-    lines_move = [(0,0)]
-    lines_press = [(0,0)]
+    lines_move = []
+    lines_press = []
 
     begin_time = time.time()
     
@@ -209,8 +209,8 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
         lines_move.append(mouse_pos)
 
         if show_lines == 1:
-            pygame.draw.lines(screen, (255,0,0), 0, lines_move)
             try:
+                pygame.draw.lines(screen, (255,0,0), 0, lines_move)
                 pygame.draw.lines(screen, (0,255,0), 0, lines_press)
             except:
                 pass
