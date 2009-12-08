@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-def main(debug=0,csv_bool=0,windows=0):
+def main(debug=0,csv_bool=0,windows=0,tmovie=0):
     import pygame,sys
     pygame.init()
 
@@ -15,10 +15,6 @@ def main(debug=0,csv_bool=0,windows=0):
     font_text = u"中文測試"
     font_text_old = u""
     ren = font.render(font_text,1,(127,127,127))
-
-#   speed = [2,2]
-#   gray = (127,127,127)
-#   angle = 0.0
 
 # 標題
     pygame.display.set_caption('uimeter') 
@@ -82,10 +78,17 @@ def main(debug=0,csv_bool=0,windows=0):
         for j in range(641):
             matrix_press[i].append(0)
 # 播放影片
-    movie.play()
-    pygame.time.wait(2500)
-    
+    if tmovie == 1:
+        movie.play()
+        pygame.time.wait(2500)
+
+# 顯示線段
+    show_lines = 0
+    lines_move = [(0,0)]
+    lines_press = [(0,0)]
+
     begin_time = time.time()
+    
 # 主程式正式開始, 若按 ESC 則跳出結束
     while not (pygame.key.get_pressed()[pygame.K_ESCAPE]):
         for event in pygame.event.get():
@@ -109,8 +112,14 @@ def main(debug=0,csv_bool=0,windows=0):
                         if pygame.key.get_pressed()[i] == 1 :
                             print chr(i) + ' '                
                             font_text = font_text + chr(i)
+                if pygame.key.get_pressed()[pygame.K_1]:
+                    if show_lines == 1 : show_lines = 0
+                    else : show_lines = 1
+
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                lines_press.append(mouse_pos)
                 pygame.image.save(screen, 'screenshot/' +str(image_counter)+'.png')
+                image_counter += 1
             else: pass
 # 顯示現在狀態, 秒數和工作事件
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec, 事件 : %s' % (time.time()-begin_time, clock.get_fps(), event)
@@ -196,6 +205,16 @@ def main(debug=0,csv_bool=0,windows=0):
             pass
         screen.blit(ren, (0,0))
         font_text_old = font_text
+# 繪製路徑
+        lines_move.append(mouse_pos)
+
+        if show_lines == 1:
+            pygame.draw.lines(screen, (255,0,0), 0, lines_move)
+            try:
+                pygame.draw.lines(screen, (0,255,0), 0, lines_press)
+            except:
+                pass
+
 # 將資料寫至螢幕
         pygame.display.flip()
         clock.tick(100)

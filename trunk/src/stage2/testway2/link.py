@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #UIMeter
 #License: GNU General Public License v2
@@ -19,8 +18,5 @@ run2.main()
 
 time.sleep(5)
 
-import run3
-run3.main()
-
-time.sleep(20)
-
+import run
+run.main()
