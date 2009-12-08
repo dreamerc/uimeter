@@ -4,7 +4,7 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-print '按 ESC 可退出'
+print u'按 ESC 可退出'
 import time
 time.sleep(5)
 

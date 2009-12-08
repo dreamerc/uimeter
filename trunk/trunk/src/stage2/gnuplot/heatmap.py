@@ -6,15 +6,15 @@
 #Ref : http://gnuplot.sourceforge.net/demo_4.3/heatmaps.html
 
 try:
-    print '嘗試載入 Gnuplot ...',
+    print u'嘗試載入 Gnuplot ...',
     import Gnuplot
-    print '成功'
+    print u'成功'
 except:
-    print '載入 Gnuplot 失敗... 檢查原因'
+    print u'載入 Gnuplot 失敗... 檢查原因'
     try:
         import numpy
     except:
-        print '請先安裝 NumPy, 再安裝 Gnuplot'
+        print u'請先安裝 NumPy, 再安裝 Gnuplot'
 
 g = Gnuplot.Gnuplot(debug=1)
 

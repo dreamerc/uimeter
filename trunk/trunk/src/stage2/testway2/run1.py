@@ -112,11 +112,11 @@ if __name__ == "__main__":
     try:
        import pygame
     except:
-       print "pygame 尚未安裝"
+       print u"pygame 尚未安裝"
 
     try:
        import Image
     except:
-       print "Python Imaging Libary 尚未安裝"
+       print u"Python Imaging Libary 尚未安裝"
 
     main()
