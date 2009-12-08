@@ -4,24 +4,24 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
-print "按 ESC 可退出"
+print "按 ESC 可退出, 更換畫面期間會暫停"
 import time
-time.sleep(5)
+time.sleep(3)
 
 import colorrun01
 colorrun01.main()
 
-time.sleep(5)
+time.sleep(3)
 
 import colorrun02
 colorrun02.main()
 
-time.sleep(5)
+time.sleep(3)
 
 import colorrun03
 colorrun03.main()
 
-time.sleep(20)
+time.sleep(3)
 
 print "測試點圖形"
 import run03

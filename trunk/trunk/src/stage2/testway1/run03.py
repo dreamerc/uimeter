@@ -106,7 +106,7 @@ def main(debug=1,csv_bool=0):
                 for i in range(counter):
                     rect.append((random.randint(0,600), random.randint(0,380), random.randint(5,100), random.randint(5,100) ))
                     rect_hit.append(0)
-                    a = random.randint(0,255)
+                    a = random.randint(0,200)
                     rect_color.append((a,a,a))
             else:
                 circle = []
@@ -116,7 +116,7 @@ def main(debug=1,csv_bool=0):
                     circle.append((random.randint(50,600), random.randint(50,380)))
                     circle_rad.append(random.randint(5,50))
                     circle_hit.append(0)
-                    a = random.randint(0,255)
+                    a = random.randint(0,200)
                     circle_color.append((a,a,a))
             mark = 1
             
