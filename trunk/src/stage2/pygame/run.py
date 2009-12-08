@@ -229,60 +229,63 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
     file.close()
 
 # Gnuplot 繪圖
-    g = Gnuplot.Gnuplot(debug=1)
-    g('unset cbtics')
-    g('unset key')
-    g('set view map')
-    g('set yrange [] reverse')
-#   g("plot 'screenshot/0.png' binary filetype=png origin=(0,0)  dx=0.5 dy=1.5 with rgbimage notitle")
-    g("splot 'heatmap.dat' matrix with image")
-    raw_input('Please press return to exit...\n')
+    try:
+        g = Gnuplot.Gnuplot(debug=1)
+        g('unset cbtics')
+        g('unset key')
+        g('set view map')
+        g('set yrange [] reverse')
+#       g("plot 'screenshot/0.png' binary filetype=png origin=(0,0)  dx=0.5 dy=1.5 with rgbimage notitle")
+        g("splot 'heatmap.dat' matrix with image")
+        raw_input('Please press return to exit...\n')
 
 # Mouse_press
 # 繪製資料矩陣給 gnuplot 用
-    file = open('heatmap.dat','wb')
-    for i in matrix_press:
-        for j in i:
-            file.write(str(j) + ' ')
-        file.write('\n')
-    file.close()
+        file = open('heatmap.dat','wb')
+        for i in matrix_press:
+            for j in i:
+                file.write(str(j) + ' ')
+            file.write('\n')
+        file.close()
 
 # Gnuplot 繪圖
-    g = Gnuplot.Gnuplot(debug=1)
-    g('unset cbtics')
-    g('unset key')
-    g('set view map')
-    g('set yrange [] reverse')
-    g("splot 'heatmap.dat' matrix with image")
-    raw_input('Please press return to exit...\n')
+        g = Gnuplot.Gnuplot(debug=1)
+        g('unset cbtics')
+        g('unset key')
+        g('set view map')
+        g('set yrange [] reverse')
+        g("splot 'heatmap.dat' matrix with image")
+        raw_input('Please press return to exit...\n')
+    except:
+        print u"無 gnuplot ... 結束程式"
 
 if __name__ == "__main__":
 
     try:
        import pygame
     except:
-       print "pygame 尚未安裝"
+       print u"pygame 尚未安裝"
 
     try:
        import Image
     except:
-       print "Python Imaging Libary 尚未安裝"
+       print u"Python Imaging Libary 尚未安裝"
 
     try:
-        print '嘗試載入 Gnuplot ...',
+        print u'嘗試載入 Gnuplot ...',
         import Gnuplot
-        print '成功'
+        print u'成功'
     except:
-        print '載入 Gnuplot 失敗... 檢查原因'
+        print u'載入 Gnuplot 失敗... 檢查原因'
         try:
             import numpy
         except:
-            print '請先安裝 NumPy, 再安裝 Gnuplot'
+            print u'請先安裝 NumPy, 再安裝 Gnuplot'
 
     import sys
     if sys.platform == "win32" or sys.platform == "cygwin" :
         windows = 1
-        print "將不支援輸入法"
+        print u"將不支援輸入法"
     else : windows = 0
 
     main(windows=windows,csv_bool=0)
