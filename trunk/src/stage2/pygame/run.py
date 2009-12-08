@@ -9,7 +9,7 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
     pygame.init()
 
 # 啟動字型
-    print "啟動字型測試 ..." + str(pygame.font.get_init())
+    print u"啟動字型測試 ..." + str(pygame.font.get_init())
     if windows == 0 : font = pygame.font.Font("/usr/share/fonts/truetype/arphic/uming.ttc",24)
     else : font = pygame.font.SysFont("新細明體",24)
     font_text = u"中文測試"
