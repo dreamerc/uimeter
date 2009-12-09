@@ -99,12 +99,15 @@ def main(debug=1,csv_bool=0):
             if min_x <= mouse_pos[0] <= max_x and min_y <= mouse_pos[1] <= max_y:
                 screen.blit(fakeicon1_big, (points[0][0],points[0][1]))
                 print "mouse_on_0"
+                break
             if min_x+200 <= mouse_pos[0] <= max_x+200 and min_y <= mouse_pos[1] <= max_y:
                 screen.blit(fakeicon2_big, (points[0][0]+200,points[0][1]))
                 print "mouse_on_1"
+                break
             if min_x+400 <= mouse_pos[0] <= max_x+400 and min_y <= mouse_pos[1] <= max_y:
                 screen.blit(fakeicon3_big, (points[0][0]+400,points[0][1]))
                 print "mouse_on_2"
+                break
 ## 滑鼠冷卻
 
 
