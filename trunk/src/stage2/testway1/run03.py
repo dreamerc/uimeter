@@ -119,7 +119,7 @@ def main(debug=1,csv_bool=0):
                     circle_hit.append(0)
                     a1 = random.randint(0,200)
                     circle_color.append((a1,a1,a1))
-                circle.sort()
+                circle_rad.sort(reverse=True)
             mark = 1
             
         if mark_circle == 0:
@@ -149,10 +149,6 @@ def main(debug=1,csv_bool=0):
                 print k, counter
                 if k == counter : mark = 0
 ## 滑鼠冷卻
-
-
-        cooldown = cooldown + 1
-        if cooldown > 140000: cooldown = 0
 
 
 # 將資料寫至螢幕
