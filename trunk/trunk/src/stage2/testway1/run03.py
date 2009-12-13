@@ -44,6 +44,14 @@ def main(debug=1,csv_bool=0):
     hide = 0
 
 
+# 螢幕擷取
+    image_counter = 0
+
+# 顯示線段
+    show_lines = 1
+    lines_move = []
+    lines_press = []
+
 # Mouse 工作冷卻
     cooldown = 0
 
@@ -76,11 +84,20 @@ def main(debug=1,csv_bool=0):
 
 # 主程式正式開始, 若按 ESC 則跳出結束
     while not (pygame.key.get_pressed()[pygame.K_ESCAPE]):
+# 事件判別
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             elif event.type == pygame.MOUSEMOTION:
                 pos = event.pos
                 moves.append(event.rel)
+            elif event.type == pygame.KEYDOWN:
+                if pygame.key.get_pressed()[pygame.K_1]:
+                    if show_lines == 1 : show_lines = 0
+                    else : show_lines = 1
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                lines_press.append(mouse_pos)
+                pygame.image.save(screen, 'screenshot/r03_' +str(image_counter)+'.png')
+                image_counter += 1
         else: pass
 # 顯示現在狀態, 秒數和工作事件
         b = time.time()
@@ -96,9 +113,11 @@ def main(debug=1,csv_bool=0):
         screen.fill((255, 255, 255))
         if mark == 0:
             counter += 1
+            lines_move = []
+            lines_press = []
             if counter == 11:
                 counter = 1
-                if mark_circle == 1: mark_circle = 0
+                if mark_circle == 1: break
                 else: mark_circle = 1
             if mark_circle == 0:
                 rect = []
@@ -148,6 +167,17 @@ def main(debug=1,csv_bool=0):
                     k += circle_hit[i]
                 print k, counter
                 if k == counter : mark = 0
+
+# 繪製路徑
+        lines_move.append(mouse_pos)
+
+        if show_lines == 1:
+            try:
+                pygame.draw.lines(screen, (255,0,0), 0, lines_move)
+                pygame.draw.lines(screen, (0,255,0), 0, lines_press)
+            except:
+                pass
+
 ## 滑鼠冷卻
 
 
@@ -166,4 +196,4 @@ if __name__ == "__main__":
     except:
        print u"Python Imaging Libary 尚未安裝"
 
-    main()
+    main(csv_bool=0)

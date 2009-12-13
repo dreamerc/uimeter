@@ -87,6 +87,7 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
     lines_move = []
     lines_press = []
 
+# 存入初始時間
     begin_time = time.time()
     
 # 主程式正式開始, 若按 ESC 則跳出結束

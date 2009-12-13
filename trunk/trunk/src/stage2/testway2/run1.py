@@ -4,6 +4,14 @@
 #License: GNU General Public License v2
 #Author: Shan-Bin Chen <dreamerwolf.tw@gmail.com>
 
+'''
+測試目的：字型對人判斷的影響
+
+測試方法：1.出現4個大方框。
+	  
+	  2.要求測試對象點選不同字型之方框；
+'''
+
 def main(debug=1,csv_bool=0):
     import pygame,sys
     pygame.init()
@@ -38,6 +46,15 @@ def main(debug=1,csv_bool=0):
     fakeicon1_big = pygame.image.load("img/02(0).tga")
 
     title = pygame.image.load("img/title1.tga")
+
+# 螢幕擷取
+    image_counter = 0
+
+# 顯示線段
+    show_lines = 1
+    lines_move = []
+    lines_press = []
+
 # Mouse 工作冷卻
     cooldown = 0
 
@@ -56,11 +73,20 @@ def main(debug=1,csv_bool=0):
 
 # 主程式正式開始, 若按 ESC 則跳出結束
     while not (pygame.key.get_pressed()[pygame.K_ESCAPE]):
+# 事件判別
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             elif event.type == pygame.MOUSEMOTION:
                 pos = event.pos
                 moves.append(event.rel)
+            elif event.type == pygame.KEYDOWN:
+                if pygame.key.get_pressed()[pygame.K_1]:
+                    if show_lines == 1 : show_lines = 0
+                    else : show_lines = 1
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                lines_press.append(mouse_pos)
+                pygame.image.save(screen, 'screenshot/r1_' +str(image_counter)+'.png')
+                image_counter += 1
         else: pass
 # 顯示現在狀態, 秒數和工作事件
         b = time.time()
@@ -98,6 +124,17 @@ def main(debug=1,csv_bool=0):
                 screen.blit(fakeicon1_big, (points[0][0]+450,points[0][1]))
                 print "mouse_on_3"
                 break
+
+# 繪製路徑
+        lines_move.append(mouse_pos)
+
+        if show_lines == 1:
+            try:
+                pygame.draw.lines(screen, (255,0,0), 0, lines_move)
+                pygame.draw.lines(screen, (0,255,0), 0, lines_press)
+            except:
+                pass
+
 ## 滑鼠冷卻
 
 
@@ -120,4 +157,4 @@ if __name__ == "__main__":
     except:
        print u"Python Imaging Libary 尚未安裝"
 
-    main()
+    main(csv_bool=0)
