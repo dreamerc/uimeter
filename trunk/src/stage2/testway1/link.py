@@ -8,25 +8,25 @@
 五秒延遲是為了讓程式不會一次結束
 '''
 
-print u'按 ESC 可退出, 每次間隔會暫停五秒, 請耐心等候'
+print u'按 ESC 可退出, 每次間隔會暫停三秒, 請耐心等候'
 import time
-time.sleep(5)
+time.sleep(3)
 
 import colorrun01
 colorrun01.main()
 
-time.sleep(5)
+time.sleep(3)
 
 import colorrun02
 colorrun02.main()
 
-time.sleep(5)
+time.sleep(3)
 
 import colorrun03
 colorrun03.main()
 
 print u"測試點圖形, 請勿按住滑鼠"
-time.sleep(5)
+time.sleep(3)
 
 import run03
 run03.main()
