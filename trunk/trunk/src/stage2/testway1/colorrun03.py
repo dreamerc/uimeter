@@ -70,7 +70,7 @@ def main(debug=1,csv_bool=0):
 # CSV 資料庫格式
     if csv_bool == 1:
         import csv
-        csv_file = csv.writer(open("csv_file.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        csv_file = csv.writer(open("csv_file_c03.csv", "wb"),delimiter=' ',quotechar='|', quoting=csv.QUOTE_MINIMAL)
     else:
         pass
 # 播放影片
@@ -159,4 +159,4 @@ if __name__ == "__main__":
     except:
        print u"Python Imaging Libary 尚未安裝"
 
-    main(csv_bool=0)
+    main(csv_bool=1)

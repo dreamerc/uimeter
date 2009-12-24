@@ -289,4 +289,4 @@ if __name__ == "__main__":
         print u"將不支援輸入法"
     else : windows = 0
 
-    main(windows=windows,csv_bool=0)
+    main(windows=windows,csv_bool=1)
