@@ -7,7 +7,6 @@ python link.py
 rm *pyc
 cd ../pygame/
 python run.py
-rm *pyc
 cd ..
 mkdir $a
 mkdir $a/testway1

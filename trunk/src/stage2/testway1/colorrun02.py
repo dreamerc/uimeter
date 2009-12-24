@@ -88,7 +88,10 @@ def main(debug=1,csv_bool=0):
                     if show_lines == 1 : show_lines = 0
                     else : show_lines = 1
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                lines_press.append(mouse_pos)
+		try:
+                    lines_press.append(mouse_pos)
+                except:
+                    pass
                 pygame.image.save(screen, 'screenshot/c02_' +str(image_counter)+'.png')
                 image_counter += 1
         else: pass
