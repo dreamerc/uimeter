@@ -91,7 +91,7 @@ def main(debug=1,csv_bool=0):
 # 顯示現在狀態, 秒數和工作事件
         b = time.time()
         if debug == 1: print u'經過時間 : %f 秒, FPS : %f page/sec , 事件 : %s' % (b-a, clock.get_fps(), event)
-        if csv_bool == 1 :csv_file.writerows([str(time.time()-begin_time), str(clock.get_fps()), str(event)])
+        if csv_bool == 1 :csv_file.writerows([str(b-a), str(clock.get_fps()), str(event)])
 
 ## 視窗偵測與移動
         mouse_pos = pygame.mouse.get_pos()

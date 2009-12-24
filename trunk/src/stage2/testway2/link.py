@@ -13,14 +13,14 @@ import time
 time.sleep(5)
 
 import run1
-run1.main()
+run1.main(csv_bool=1)
 
 time.sleep(5)
 
 import run2
-run2.main()
+run2.main(csv_bool=1)
 
 time.sleep(5)
 
 import run
-run.main()
+run.main(csv_bool=1)

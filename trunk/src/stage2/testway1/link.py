@@ -13,20 +13,20 @@ import time
 time.sleep(3)
 
 import colorrun01
-colorrun01.main()
+colorrun01.main(csv_bool=1)
 
 time.sleep(3)
 
 import colorrun02
-colorrun02.main()
+colorrun02.main(csv_bool=1)
 
 time.sleep(3)
 
 import colorrun03
-colorrun03.main()
+colorrun03.main(csv_bool=1)
 
 print u"測試點圖形, 請勿按住滑鼠"
 time.sleep(3)
 
 import run03
-run03.main()
+run03.main(csv_bool=1)
