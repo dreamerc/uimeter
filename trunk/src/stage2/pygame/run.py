@@ -118,7 +118,10 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
                     else : show_lines = 1
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                lines_press.append(mouse_pos)
+                try:
+                    lines_press.append(mouse_pos)
+                except:
+                    pass
                 pygame.image.save(screen, 'screenshot/' +str(image_counter)+'.png')
                 image_counter += 1
             else: pass
@@ -234,6 +237,7 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
         g = Gnuplot.Gnuplot(debug=1)
         g('unset cbtics')
         g('unset key')
+        g('set palette rgbformulae -30,-31,-32')
         g('set view map')
         g('set yrange [] reverse')
 #       g("plot 'screenshot/0.png' binary filetype=png origin=(0,0)  dx=0.5 dy=1.5 with rgbimage notitle")
@@ -253,6 +257,7 @@ def main(debug=0,csv_bool=0,windows=0,tmovie=0):
         g = Gnuplot.Gnuplot(debug=1)
         g('unset cbtics')
         g('unset key')
+        g('set palette rgbformulae -30,-31,-32')
         g('set view map')
         g('set yrange [] reverse')
         g("splot 'heatmap.dat' matrix with image")
