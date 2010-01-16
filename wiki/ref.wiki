@@ -2,3 +2,4 @@
 
 參考資料 :
   * http://vimeo.com/6897175
+  * http://gnuplot-tricks.blogspot.com/
